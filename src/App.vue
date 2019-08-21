@@ -6,6 +6,7 @@
       v-model="valueLocal"
       @blur="edit = false;"
       @keyup.enter="edit = false;"
+      v-focus
     >
     <h1 v-else @click="edit = true;">{{valueLocal}}</h1>
   </div>
@@ -25,6 +26,14 @@ export default {
   watch: {
     value: function(oldValue, newValue) {
       this.valueLocal = newValue;
+    }
+  },
+
+  directives: {
+    focus: {
+      inserted(el) {
+        el.focus();
+      }
     }
   }
 };
